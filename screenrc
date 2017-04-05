@@ -1,0 +1,46 @@
+# Don't display the copyright page
+startup_message off
+
+# tab-completion flash in heading bar
+vbell off
+
+# Allow bold colors - necessary for some reason
+attrcolor b ".I"
+ 
+# Tell screen how to set colors. AB = background, AF=foreground
+termcapinfo xterm 'Co#256:AB=\E[48;5;%dm:AF=\E[38;5;%dm'
+ 
+# Enables use of shift-PgUp and shift-PgDn
+termcapinfo xterm|xterms|xs|rxvt ti@:te@
+ 
+# Erase background with current bg color
+defbce "on"
+ 
+# Enable 256 color term
+term xterm-256color
+
+# keep scrollback n lines
+defscrollback 1000
+
+screen -t local 0
+chdir /home/ben/projects/javelin2
+screen -t jav2 1
+screen -t jav2 2
+#screen -t logs 2 tail -f /var/log/openerp/odoo.log
+#chdir /home/ben/projects/imrp
+#screen -t imrp 2
+#chdir /home/ben/projects/imrp_web
+#screen -t imrp_web 3
+select 1
+altscreen on
+#terminfo xterm* ti=:te=
+termcapinfo xterm* ti@:te@
+
+shelltitle "$ |bash"
+
+# THIS IS THE PRETTY BIT
+#change the hardstatus settings to give an window list at the bottom of the
+##screen, with the time and date and with the current window highlighted
+hardstatus             alwayslastline                                                                                                                          
+#hardstatus string '%{= kG}[ %{G}%H %{g}][%= %{= kw}%?%-Lw%?%{r}(%{W}%n*%f%t%?(%u)%?%{r})%{w}%?%+Lw%?%?%= %{g}][%{B} %d/%m %{W}%c %{g}]'
+hardstatus string '%{= Kd} %{= Kd}%-w%{= Kr}[%{= KW}%n %t%{= Kr}]%{= Kd}%+w %-= %{KG} %H%{KW}|%{KY}%101`%{KW}|%D %M %d %Y%{= Kc} %C%A%{-}'
